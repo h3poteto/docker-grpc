@@ -1,4 +1,4 @@
-FROM golang:1.11-alpine3.8
+FROM golang:1.11.4-alpine3.8
 
 RUN set -ex && \
     apk add --no-cache \
@@ -12,6 +12,8 @@ RUN set -ex && \
 ENV GOPATH /go
 ENV APP_DIR ${GOPATH}/src/github.com
 
+ENV PATH $PATH:/go/bin
+
 RUN set -x \
     && adduser -D -u 1000 go \
     && echo 'go:password' | chpasswd \
@@ -21,6 +23,6 @@ RUN set -x \
 WORKDIR ${APP_DIR}
 USER go
 
-RUN set -x \
-    go get -u github.com/golang/protobuf/protoc-gen-go && \
-    go get -u google.golang.org/grpc
+RUN set -x && \
+    go get -u google.golang.org/grpc && \
+    go get -u github.com/golang/protobuf/protoc-gen-go
