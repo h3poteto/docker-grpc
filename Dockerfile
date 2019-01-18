@@ -29,3 +29,9 @@ RUN set -x && \
     go get -u github.com/golang/dep/... && \
     go get -u github.com/jessevdk/go-assets && \
     go get -u github.com/jessevdk/go-assets-builder
+
+# https://github.com/golang/protobuf/issues/763
+RUN set -x && \
+    cd /go/src/github.com/golang/protobuf/protoc-gen-go && \
+    git checkout v1.2.0 && \
+    go install
