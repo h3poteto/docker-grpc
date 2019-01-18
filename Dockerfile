@@ -25,4 +25,7 @@ USER go
 
 RUN set -x && \
     go get -u google.golang.org/grpc && \
-    go get -u github.com/golang/protobuf/protoc-gen-go
+    go get -u github.com/golang/protobuf/protoc-gen-go && \
+    go get -u github.com/golang/dep/... && \
+    go get -u github.com/jessevdk/go-assets && \
+    go get -u github.com/jessevdk/go-assets-builder
